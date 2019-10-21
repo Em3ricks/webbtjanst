@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Moment 5</title>
+
+    <!------ Stilmall / JavaScript ---------->
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <!---- Formulär för att lägga till fler kurser ---->
+            <div class="form">
+                <h3>Lägg till fler kurser</h3>
+                <form id="form">
+                    <b>Kurskod: <br><input type="text" id="kurskod" name="kurskod" class="form-input"> <br>
+                        Kursnamn: <br> <input type="text" id="kursnamn" name="kursnamn" class="form-input"> <br>
+                        Länk till kursplan: <br> <input type="text" id="kursplan" name="kursplan" class="form-input">
+                        <br>
+                        Progression: <br> <input type="text" id="progression" name="progression" class="form-input">
+                        <br> </b>
+                    <br>
+                    <button onclick='addCourse()' class="btn draw-border">Lägg till</button>
+
+                    <br>
+                </form>
+                <!----- Vid knapptryckning körs funktionen addCourse ----->
+            </div>
+
+            <div class="courses">
+                <h3>KURSLISTA</h3>
+                <ul id="courselist">
+                    <!---- Array skrivs ut här ---->
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // När webbläsaren laddas startar funktionen getData
+        window.onload = getData;
+
+        //----------------------------------- Script för att lägga till kurser till databas ------------------------------------->
+        async function addCourse() {
+            // Lagrar HTML-formulärets olika inputs i variabler
+            let kurskod = document.getElementById("kurskod").value;
+            let kursnamn = document.getElementById("kursnamn").value;
+            let kursplan = document.getElementById("kursplan").value;
+            let progression = document.getElementById("progression").value;
+
+            // Konverterar objektvärden till en JSON-sträng och lagrar i variabel
+            let jsonStr = JSON.stringify({
+                "kurskod": kurskod,
+                "progression": progression,
+                "kursnamn": kursnamn,
+                "kursplan": kursplan
+            });
+
+            // Hämtar funktion för att lägga till nya värden från tidigare skapat API
+            fetch("http://studenter.miun.se/~joem1800/writeable/Moment5/api/course/create.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: jsonStr
+                })
+                // Magi sker 
+                .then((res) => res.json())
+                .then((data) => {
+                    getData();
+                })
+                .catch((err) => console.log(err));
+
+            // Återställer formulär efter lagring av data
+            // document.getElementById("form").reset();
+        }
+
+        //----------------------------------- Script för att läsa ut kurser från databas ------------------------------------->
+        // Variabel för att skriva ut värden till skärmen
+        const courselistEl = document.getElementById("courselist");
+
+        // Funktion innehållande fetchanrop för att läsa värden från databas
+        async function getData() {
+            // Hämtar funktion för att läsa ut värden från tidigare skapat API
+            fetch("http://studenter.miun.se/~joem1800/writeable/Moment5/api/course/read.php")
+                .then(
+                    function (response) {
+                        //felmeddelande ifall det sker problem vid anslutning
+                        if (response.status !== 200) {
+                            console.log("Error when reading file. Status code: " + response.status);
+                            return;
+                        }
+                        // Kontroll av text från anslutning
+                        response.json().then(function (data) {
+                            //Smalnar av array till child-värden och lagrar i ny funktion
+                            displayCourses(data.kurslista);
+                        });
+                    })
+                .catch(function (err) {
+                    console.log("fetch error", err);
+                });
+        }
+
+
+
+        // Funktion för att skriva ut värden hämtade av getData
+        function displayCourses(courses) {
+            //Nollställer lista
+            courselistEl.innerHTML = "";
+            //Loopar igenom array och skriver ut värden från databas
+            courses.forEach((item) => {
+                courselistEl.innerHTML += "<div class='course-item'><li>" +
+                    "<h5>" + item["kursnamn"] + "</h5>" +
+                    "<b>Kurskod: </b> " + item["kurskod"] +
+                    "<b> Progression: </b>" + item["progression"] +
+                    "<b> - </b>" + "<a href=" + item["kursplan"] + " " + "target='_blank'" +
+                    "> Kursplan</a>" +
+                    "</li></div>";
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>
