@@ -1,0 +1,258 @@
+@charset "UTF-8";
+.draw-border {
+  box-shadow: inset 0 0 0 4px #58afd1;
+  color: #58afd1;
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+}
+.draw-border::before, .draw-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+.draw-border::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+.draw-border::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+.draw-border:hover {
+  color: #ff2335;
+}
+.draw-border:hover::before, .draw-border:hover::after {
+  border-color: #ff2335;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+.draw-border:hover::before {
+  transition-delay: 0s, 0s, 0.25s;
+}
+.draw-border:hover::after {
+  transition-delay: 0s, 0.25s, 0s;
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem "Roboto Slab", sans-serif;
+  padding: 1em 2em;
+  letter-spacing: 0.05rem;
+}
+.btn:focus {
+  outline: 2px dotted #55d7dc;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.courses h3 {
+  text-align: center;
+  padding: 1em;
+}
+
+.courses {
+  text-align: center;
+}
+
+.course-item {
+  width: 400px;
+  height: 160px;
+  display: inline-flex;
+  margin: 1em;
+  padding: 0.4em;
+}
+
+.course-item:nth-child(even) {
+  background: #CCC;
+}
+
+.course-item:nth-child(odd) {
+  background: #8f8e8e;
+}
+
+.form {
+  padding: 1em;
+  width: 100%;
+  text-align: center;
+  background-color: #dbedfb;
+}
+
+.form-input {
+  width: 400px;
+  padding: 0.4em;
+}
+
+li {
+  list-style: none;
+  padding: 1em;
+}
+
+/**
+ * Document
+ */
+html {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  line-height: 1.618;
+  color: #444;
+  /* Scale the root font size at different breakpoints */
+  font-size: 85%;
+}
+@media only screen and (min-width: 20em) {
+  html {
+    font-size: 90%;
+  }
+}
+@media only screen and (min-width: 30em) {
+  html {
+    font-size: 95%;
+  }
+}
+@media only screen and (min-width: 40em) {
+  html {
+    font-size: 100%;
+  }
+}
+@media only screen and (min-width: 48em) {
+  html {
+    font-size: 105%;
+  }
+}
+@media only screen and (min-width: 64em) {
+  html {
+    font-size: 110%;
+  }
+}
+
+/**
+ * Headings
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 3.236rem 0 0.809rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #222;
+}
+
+h1 {
+  margin: 3.236rem 0;
+  font-size: 3.125rem;
+}
+
+h2 {
+  font-size: 2.617924rem;
+}
+
+h3 {
+  font-size: 1.9313967862rem;
+}
+
+h4 {
+  font-size: 1.618rem;
+}
+
+h5 {
+  font-size: 1.1936939346rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+/**
+ * Blocks
+ */
+p,
+blockquote,
+figure,
+ol,
+ul,
+dl,
+table,
+pre,
+.vcard {
+  margin: 0 0 1.618rem;
+}
+
+/**
+ * Lists
+ */
+ol ol,
+ol ul,
+ul ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+dt {
+  font-size: 0.7377589213rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #6e6e6e;
+}
+
+dd {
+  margin: 0 0 1.618rem;
+}
+
+/**
+ * Code
+ */
+pre,
+code,
+kdb,
+samp,
+var {
+  font-family: "Menlo", "Monaco", monospace;
+}
+
+pre {
+  background: #f5f5f5;
+  margin: 1.618rem 0;
+  padding: 0.809rem;
+}
+
+/**
+ * VCard
+ */
+.vcard .org,
+.vcard .fn {
+  font-weight: 700;
+}
+
+/**
+ * Text-level
+ */
+b,
+strong,
+th {
+  font-weight: 700;
+}
+
+small {
+  font-size: 0.7377589213rem;
+}
+
+q {
+  quotes: "“" "”" "‘" "’";
+}
+
+/*# sourceMappingURL=main.css.map */
