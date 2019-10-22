@@ -32,3 +32,6 @@ Sen med FETCH precis som i föregående moment hämtar jag rätt PHP-script inne
 Jag statuerar att metoden är av typen POST och kopplar sen min variabel för de samlade JSON-värdena så att dessa matas
 in till databasen. Jag lägger även in funktionen för att hämta data i denna funktion så att hemsidan automatiskt laddas
 om när värdena har lagts till databasen så att den nya kursinformationen direkt dyker upp utan att behöva uppdatera sidan. 
+
+Länk till webbtjänst för testkörning:
+http://studenter.miun.se/~joem1800/writeable/Moment5/pub/
