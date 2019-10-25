@@ -35,7 +35,7 @@
 
     &:hover {
         color: $hover;
-
+ 
         &::before,
         &::after {
             border-color: $hover;
@@ -604,7 +604,7 @@ $MS-gem-exists: ms-gem-exists();
 @function ms-range($x, $y, $range:$ms-range) {
     @return nth(nth($range, $x), $y);
 }
-
+ 
 // Generate calc() function
 @function ms-respond-calc($value, $n, $range: $ms-range, $base: $ms-base) {
     $val1: ms($value, $base, ms-range($n, 1, $range));

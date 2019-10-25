@@ -27,7 +27,6 @@
                         <br> </b>
                     <br>
                     <button onclick='addCourse()' class="btn draw-border">Lägg till</button>
-
                     <br>
                 </form>
                 <!----- Vid knapptryckning körs funktionen addCourse ----->
@@ -108,8 +107,6 @@
                 });
         }
 
-
-
         // Funktion för att skriva ut värden hämtade av getData
         function displayCourses(courses) {
             //Nollställer lista
@@ -122,12 +119,10 @@
                     "<b> Progression: </b>" + item["progression"] +
                     "<b> - </b>" + "<a href=" + item["kursplan"] + " " + "target='_blank'" +
                     "> Kursplan</a>" +
-                    "</li></div>";
+                    "</li>"+ "ID för update/delete" + item["id"] + "</div>";
             });
         }
     </script>
-
-
 </body>
 
 </html>

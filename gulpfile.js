@@ -68,5 +68,4 @@ exports.default = series(parallel(copyHTML, copyMedia, jsTask, cssCombine /*,bab
 /*____________________________________________________________________
 Kommando för att övervaka och flytta ändringar från sass-fil till css:
 sass --watch src/css/style.scss:src/css/main.css
-Kommando för att konvertera senare version av ES med Babel:
 _____________________________________________________________________*/
